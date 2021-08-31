@@ -168,12 +168,25 @@ Datasets for 3 hypomorph libraries of M. tuberculosis H37Rv treated
 with 11 drugs (combined) are provided in the data/ sub-directory.
 Here the drugs and abbreviations tested in each library:
 
-* Broad (input file: poscon_lib1_matrix.txt, (downloaded from https://www.broadinstitute.org/chemical-biology/initiative-chemical-genetics ; library1 of poscon)
+* Broad (input file: poscon_lib1_matrix.txt, downloaded from https://www.broadinstitute.org/chemical-biology/initiative-chemical-genetics ; library1, positive controls)
 
   * trimethoprim
   * methotrexate
   * rifampin
   * BRD-4592
+
+> Rscript preprocess_Broad.R poscon_lib1_matrix.txt trimethoprim \
+> Rscript CGA_LMM.R trimethoprim_melted.txt trimethoprim
+>
+> Rscript preprocess_Broad.R poscon_lib1_matrix.txt methotrexate \
+> Rscript CGA_LMM.R methotrexate_melted.txt methotrexate
+>
+> Rscript preprocess_Broad.R poscon_lib1_matrix.txt rifampin \
+> Rscript CGA_LMM.R rifampin_melted.txt rifampin
+>
+> Rscript preprocess_Broad.R poscon_lib1_matrix.txt BRD-4592 \
+> Rscript CGA_LMM.R BRD-4592_melted.txt BRD-4592
+
 
 * Exp7 (input file: Exp7_counts.txt)
 
@@ -184,6 +197,25 @@ Here the drugs and abbreviations tested in each library:
   * Sulfa - sulfamethoxazole
   * BDQ - bedaquiline
 
+> Rscript preprocess_Exp7.R Exp7_counts.txt Levo \
+> Rscript CGA_LMM.R Levo_melted.txt Levo
+>
+> Rscript preprocess_Exp7.R Exp7_counts.txt Moxi \
+> Rscript CGA_LMM.R Moxi_melted.txt Moxi
+>
+> Rscript preprocess_Exp7.R Exp7_counts.txt INH \
+> Rscript CGA_LMM.R INH_melted.txt INH
+>
+> Rscript preprocess_Exp7.R Exp7_counts.txt Fida \
+> Rscript CGA_LMM.R Fida_melted.txt Fida
+>
+> Rscript preprocess_Exp7.R Exp7_counts.txt Sulfa \
+> Rscript CGA_LMM.R Sulfa_melted.txt Sulfa
+>
+> Rscript preprocess_Exp7.R Exp7_counts.txt BDQ \
+> Rscript CGA_LMM.R BDQ_melted.txt BDQ
+
+
 * Cu (input file: Supplemental_Table_T3_copper_barcode_counts.txt; 
 treated with copper, with 3 different carbon sources in the medium:)
 
@@ -191,12 +223,21 @@ treated with copper, with 3 different carbon sources in the medium:)
   * acetate
   * glycerol
 
-For the copper dataset, you have to specify not a drug name, but a 
-combination of carbon source and SSB strength (ssb1, ssb2, or ssb3):
+For the copper dataset, the carbon source is specified as the 
+argument on the command line for the preprocessing step, instead of the drug 
+(since there is only 1 drug: Cu).
+The melted file it creates is called 'Cu_CARBON_SOURCE_ssb1'
+The suffix 'ssb1' refers to the specific Tet promoter used for controlling sspB expression.
 
-> Rscript preprocess_copper.R copper_barcode_counts.txt cholesterol ssb1
 
+> Rscript preprocess_copper.R copper_barcode_counts.txt cholesterol \
 > Rscript CGA_LMM.R Cu_cholesterol_ssb1_melted.txt Cu_cholesterol_ssb1
+>
+> Rscript preprocess_copper.R copper_barcode_counts.txt acetate \
+> Rscript CGA_LMM.R Cu_acetate_ssb1_melted.txt Cu_acetate_ssb1
+>
+> Rscript preprocess_copper.R copper_barcode_counts.txt glycerol \
+> Rscript CGA_LMM.R Cu_glycerol_ssb1_melted.txt Cu_glycerol_ssb1 
 
 
 
