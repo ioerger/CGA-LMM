@@ -3,7 +3,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 COUNTS_FILE=args[1] "Supplemental_Table_T3_copper_barcode_counts.txt"
 CARBON = args[2]
-SSB = args[3]
+SSB = "ssb1"
 DRUG = sprintf("Cu_%s_%s",CARBON,SSB)
 
 data = read.table(COUNTS_FILE,sep='\t',head=T)
